@@ -1,10 +1,13 @@
-function onSignIn(googleUser) {
+
+  function onSignIn(googleUser) {
     // This function will be called when the user successfully signs in.
     var profile = googleUser.getBasicProfile();
     console.log('ID: ' + profile.getId());
     console.log('Name: ' + profile.getName());
     console.log('Email: ' + profile.getEmail());
-    // You can use the profile information as needed.
+
+    // You can redirect the user to main.html after successful sign-in
+    window.location.href = 'https://nostalgimate.vercel.app/main.html';
   }
 
   function signOut() {
@@ -14,3 +17,11 @@ function onSignIn(googleUser) {
       console.log('User signed out.');
     });
   }
+
+  // Listen for changes in the user's sign-in status
+  gapi.auth2.getAuthInstance().isSignedIn.listen(function (isSignedIn) {
+    if (isSignedIn) {
+      // Redirect the user to main.html when signed in
+      window.location.href = 'https://nostalgimate.vercel.app/main.html';
+    }
+  });
