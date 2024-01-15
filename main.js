@@ -6,7 +6,7 @@
     console.log('Name: ' + profile.getName());
     console.log('Email: ' + profile.getEmail());
 
-    // You can redirect the user to main.html after successful sign-in
+    // Redirect the user to your main.html page
     window.location.href = 'https://nostalgimate.vercel.app/main.html';
   }
 
@@ -15,13 +15,17 @@
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
       console.log('User signed out.');
+
+      // Redirect the user to your home page after signing out
+      window.location.href = 'https://nostalgimate.vercel.app';
     });
   }
 
   // Listen for changes in the user's sign-in status
   gapi.auth2.getAuthInstance().isSignedIn.listen(function (isSignedIn) {
     if (isSignedIn) {
-      // Redirect the user to main.html when signed in
+      // Redirect the user to your main.html page when signed in
       window.location.href = 'https://nostalgimate.vercel.app/main.html';
     }
   });
+
